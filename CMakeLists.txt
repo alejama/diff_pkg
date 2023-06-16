@@ -17,6 +17,9 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(std_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -36,5 +39,15 @@ install(
   DIRECTORY config description launch worlds
   DESTINATION share/${PROJECT_NAME}
 )
+
+ament_python_install_package(${PROJECT_NAME})
+
+add_executable(singleg scripts/single_goal_nav.py)
+ament_target_dependencies(singleg rclpy std_msgs)
+
+install(TARGETS
+  singleg
+  DESTINATION lib/${PROJECT_NAME})
+        
 
 ament_package()
