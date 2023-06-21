@@ -12,9 +12,11 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'serial_port': '/dev/ttyUSB0',
+                'serial_baudrate': 115200,
                 'frame_id': 'laser_frame',
                 'angle_compensate': True,
-                'scan_mode': 'Standard'
+                'scan_mode': 'Standard',
+                'inverted': False
             }]
         )
     ])
